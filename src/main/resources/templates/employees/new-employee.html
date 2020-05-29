@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"></head>
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<div class="container">
+    <br/>
+    <form action="/employees/save" th:object="${employee}" method="post">
+
+
+        <div class="form-group row">
+<!--            This will be used to bind to teh employee that was clicked on (USED FOR UPDATES)-->
+            <input type="hidden" th:field="${employee.employeeId}"/>
+
+            <input type="text" placeholder="First Name" th:field="${employee.firstName}"/>
+            <span style="color: red" th:if="${#fields.hasErrors('firstName')}"
+                    th:errors="${employee.firstName}">
+            </span>
+        </div>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Last Name" th:field="${employee.lastName}"/>
+            <span style="color: red" th:if="${#fields.hasErrors('lastName')}"
+                  th:errors="${employee.lastName}">
+            </span>
+        </div>
+
+        <div class="form-group row">
+            <input type="email" placeholder="email" th:field="${employee.email}"/>
+            <span style="color: red" th:if="${#fields.hasErrors('email')}"
+                  th:errors="${employee.email}">
+            </span>
+        </div>
+
+
+        <button class="btn btn-info col-2" type="submit">Enter Employee</button>
+    </form>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

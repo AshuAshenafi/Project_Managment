@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"></head>
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<div class="container">
+    <br/>
+
+    <form action="/projects/save" th:object="${project}" method="post">
+
+
+        <div class="form-group row"><input type="text" placeholder="Project Name" th:field="${project.name}"></div>
+
+        <div class="form-group row">
+            <select th:field="${project.stage}">
+                <option th:value="NOTSTARTED">Not Started</option>
+                <option th:value="INPROGRESS">In Progress</option>
+                <option th:value="COMPLETED">Completed</option>
+            </select>
+        </div>
+
+        <div class="form-group row">
+            <textarea type="text" placeholder="Enter Project Description" th:field="${project.description}">
+
+            </textarea>
+        </div>
+
+        <div class="form-group row">
+            <select th:field="*{employees}" multiple="multiple">
+                <option th:each="employee : ${allEmployees}" th:value="${employee.employeeId}"
+                        th:text="${employee.firstName}"></option>
+            </select>
+        </div>
+
+        <button class="btn btn-info col-2" type="submit">Enter Project</button>
+    </form>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+    <h4>Current Projects</h4>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Project Stage</th>
+                <!--        <th>Project Name</th>-->
+            </tr>
+            </thead>
+                <tbody>
+                    <tr th:each="aProject : ${projects}">
+                        <td th:text="${aProject.name}"/>
+                        <td th:text="${aProject.stage}"/>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+    <h4>Current Employees</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="anEmployee : ${employees}">
+                <td th:text="${anEmployee.firstName}"></td>
+                <td th:text="${anEmployee.lastName}"></td>
+                <td th:text="${anEmployee.email}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
