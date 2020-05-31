@@ -5,6 +5,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -23,10 +24,23 @@ public class Employee {
     @NotBlank(message="Must give email!")
     @Email
     private String email;
+    //  /////////start ////////The code below is for OneToMany relationship
+//    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+//                    fetch = FetchType.LAZY)
+//    @JoinColumn(name="project_id")
+//    private Project project;
+    //  /////////end of ////////The code below is for OneToMany relationship
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    @JoinColumn(name="project_id")
-    private Project project;
+
+    //  /////////start ////////The code below is for many to many relationship
+
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(name="project_employee",
+            joinColumns = @JoinColumn(name="employee_id"),
+            inverseJoinColumns = @JoinColumn(name="project_id"))
+    private List<Project> projects;
+
+    //  /////////end of ////////The code below is for many to many relationship
 
     public Employee() {
     }
@@ -69,12 +83,29 @@ public class Employee {
     public void setEmail(String email) {
         this.email = email;
     }
+    //  /////////start of ////////The code below is for OneToMany relationship
+//    public Project getProject() {
+//        return project;
+//    }
+//
+//    public void setProject(Project project) {
+//        this.project = project;
+//    }
+    //  /////////end of ////////The code below is for OneToMany relationship
 
-    public Project getProject() {
-        return project;
+
+
+
+    //  /////////end of ////////The code below is for ManyToMany relationship
+
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
+
+    //  /////////start ////////The code below is for ManyToMany relationship
+
 }

@@ -1,6 +1,7 @@
 package com.jrp.pma.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,8 +18,21 @@ public class Project {
 
     private String description;
 
-    @OneToMany(mappedBy="project")
-    private Set<Employee> employees;
+    //  start OneToMany Relationships db
+//    @OneToMany(mappedBy = "project")
+    //  end of OneToMany Relationships db
+
+    //  //////////////////////start ManyToMany Relationships db///////////////////
+
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
+            CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(name="project_employee",
+            joinColumns = @JoinColumn(name="project_id"),
+            inverseJoinColumns = @JoinColumn(name="employee_id"))
+
+    //  //////////////////////end ManyToMany Relationships db///////////////////
+
+    private List<Employee> employees;
 
     public Project() {
     }
@@ -62,11 +76,19 @@ public class Project {
         this.description = description;
     }
 
-    public Set<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(Set<Employee> employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    // convenience method:
+    public void addEmployee(Employee emp) {
+        if(employees == null) {
+            ArrayList<Employee> employees = new ArrayList<>();
+        }
+        employees.add(emp);
     }
 }

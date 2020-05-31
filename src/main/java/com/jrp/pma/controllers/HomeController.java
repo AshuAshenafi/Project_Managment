@@ -24,12 +24,13 @@ public class HomeController {
     @GetMapping("/")
     public String displayHome(Model model) {
         // querying the database for projects
-        Set<Project> projects = proRepo.findAll();
-        Set<Employee> employees = empRepo.findAll();
+        List<Project> projects = proRepo.findAll();
+        model.addAttribute("projects", projects);
 
         // querying the database for employee
-        model.addAttribute("projects", projects);
+        List<Employee> employees = empRepo.findAll();
         model.addAttribute("employees", employees);
+
         return "main/home";
     }
 

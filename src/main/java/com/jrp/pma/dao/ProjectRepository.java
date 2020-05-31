@@ -8,5 +8,5 @@ import java.util.Set;
 
 public interface ProjectRepository extends CrudRepository <Project, Long> {
     @Override
-    public Set<Project> findAll();
+    public List<Project> findAll();
 }

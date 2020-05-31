@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface EmployeeRepository extends CrudRepository <Employee, Long> {
     @Override
-    public Set<Employee> findAll();
+    public List<Employee> findAll();
 
     public Employee findByEmployeeId(long theId);
 }
