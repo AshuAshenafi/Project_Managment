@@ -11,6 +11,7 @@ import java.util.List;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)             // if you are using sql the id shall be taken care specially when we have to load data as acomponent or starting data and do the same on project entity
     private long employeeId;
 
     @NotBlank(message="Must give first name!")

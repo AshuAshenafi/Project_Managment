@@ -7,9 +7,10 @@ import java.util.Set;
 
 @Entity
 public class Project {
-
+            // using @GeneratedValue(strategy = GenerationType.IDENTITY) might kill our performance if we are using batching.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)                    // if you are using sql the id shall be taken care specially when we have to load data as acomponent or starting data and do the same on project entity
     private long projectId;
 
     private String name;
